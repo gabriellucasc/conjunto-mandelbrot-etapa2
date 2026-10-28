@@ -1,0 +1,3 @@
+rank,primeira_linha,linhas,pixels,trabalho_iteracoes,tempo_calculo_s,tempo_coleta_s,tempo_total_local_s,tempo_montagem_s,processador
+0,0,2897,16782321,2895775547,7.813493400,0.029558000,7.874870300,0.031807300,"DESKTOP-0TFB6E2"
+1,16,2896,16776528,2896729056,7.809809800,0.033287700,7.874873200,0.000000000,"DESKTOP-0TFB6E2"

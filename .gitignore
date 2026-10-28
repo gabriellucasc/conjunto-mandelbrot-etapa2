@@ -1,0 +1,39 @@
+# Artefatos temporários e executáveis
+/output/
+/build/
+*.exe
+*.obj
+*.o
+*.out
+*.dll
+*.so
+*.a
+*.pdb
+*.ilk
+
+# Matrizes e imagens geradas fora de output/
+*.bin
+*.ppm
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# Editores e sistema operacional
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Arquivos temporários e logs
+*.log
+*.tmp
+*.bak
+
+# São mantidos no Git:
+# resultados/   (CSV, tabelas, métricas por rank, validação e ambiente)
+# graficos/     (figuras oficiais produzidas pela análise)
