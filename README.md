@@ -30,11 +30,13 @@ conjunto-mandelbrot-etapa2/
 │   ├── validacao_referencia_professor.md
 │   ├── ranks/
 │   ├── tabelas/
-│   └── graficos/
+│   ├── graficos/
+│   ├── imagens/
+│   └── referencia_etapa1/
 │
 ├── relatorio_etapa2.pdf
 ├── README.md
-└── .gitignore
+└── gitignore
 ```
 
 `gera_mandelbrot.py` foi fornecido pelo professor e é usado na validação externa. O código sequencial foi preservado da Etapa 1, sem alterações na lógica.
@@ -92,14 +94,14 @@ As tabelas e os gráficos são salvos, respectivamente, em `resultados/tabelas/`
 ### Validar contra a referência do professor
 
 ```powershell
-python codigos_auxiliares/validar_professor.py
+python codigos_auxiliares/validar_professor.py --saida resultados/validacao_professor_nova.md
 ```
 
-O resultado da comparação externa está documentado em `resultados/validacao_referencia_professor.md`. Para limpar apenas os arquivos descartáveis de teste, sem apagar os resultados oficiais, utilize `python codigos_auxiliares/benchmark.py --limpar-smoke`.
+O destino da nova validação deve ser um arquivo ainda inexistente; para substituí-lo conscientemente, acrescente `--substituir`. A validação retorna código 1 quando encontra divergências ou limites ultrapassados. O resultado da comparação externa está documentado em `resultados/validacao_referencia_professor.md`. Para limpar apenas os arquivos descartáveis de teste, sem apagar os resultados oficiais, utilize `python codigos_auxiliares/benchmark.py --limpar-smoke`.
 
 ## Resultados
 
-A bateria oficial registrou **386 execuções válidas**, abrangendo **72 configurações MPI** e **15 gráficos de análise**. As configurações MPI foram medidas em cinco repetições, com resultados consolidados por mediana.
+A bateria oficial registrou **386 execuções com verificação interna aprovada** (360 MPI e 26 sequenciais), abrangendo **72 configurações MPI** e **15 gráficos de análise**. As configurações MPI foram medidas em cinco repetições, com resultados consolidados por mediana.
 
 As matrizes produzidas pela versão MPI coincidiram exatamente com as matrizes da implementação sequencial nos testes oficiais, conforme verificação SHA-256. Na região padrão de 4096 × 4096, a distribuição cíclica com 12 processos alcançou *speedup* de aproximadamente **8,68×** e eficiência de **72,35%**.
 
@@ -107,15 +109,19 @@ A comparação com o gerador Python do professor, entretanto, **não atendeu int
 
 As durações de `MPI_Gatherv` incluem possível espera por processos mais lentos e não representam exclusivamente tempo de transferência de dados. As medições foram realizadas com MPI em um único computador, não em um cluster de máquinas distintas.
 
+As imagens auxiliares PGM do padrão e do zoom estão em `resultados/imagens/`, derivadas sem perda das contagens dos binários preservados. As referências históricas para a comparação OpenMP estão em `resultados/referencia_etapa1/`, e a tabela contextual em `resultados/tabelas/comparacao_openmp_contextual.csv`.
+
 ## Relatório
 
-A metodologia, as tabelas, os gráficos e a discussão dos resultados estão reunidos em [`relatorio_etapa2.pdf`](relatorio_etapa2.pdf).
+A metodologia, as tabelas, os gráficos e a discussão dos resultados estão reunidos em [relatorio_etapa2.pdf](relatorio_etapa2.pdf), disponível na raiz deste repositório, junto ao README e às pastas de código e resultados.
 
 ## Nota de Transparência sobre o Uso de IA
 
-Declaramos que este projeto contou com auxílio do ChatGPT nas tarefas de planejamento da metodologia experimental, apoio à implementação e depuração, revisão dos scripts auxiliares de compilação, benchmark e análise, verificação de corretude, interpretação dos resultados e apoio à redação e revisão da documentação e do relatório.
+Declaramos que este projeto contou com o auxílio das ferramentas de IA **ChatGPT e Codex**, utilizadas por ambos os integrantes exclusivamente para as tarefas de apoio ao desenvolvimento, explicação, depuração e revisão do código e dos scripts; planejamento e automação dos testes; consolidação e conferência dos dados, métricas e gráficos; interpretação dos resultados e comparação com OpenMP; investigação e documentação das diferenças numéricas perante a referência do professor; e organização e revisão técnica, gramatical e estrutural do relatório, do README e da declaração de IA, incluindo a comparação conceitual com DGEMM.
 
-Como autores, revisamos, testamos e validamos criticamente o conteúdo produzido com esse apoio, assumindo total responsabilidade pela correção lógica do código, pela precisão das medições e conclusões e pela integridade acadêmica do trabalho entregue.
+Como autores, atestamos que revisamos, testamos e validamos criticamente todo o conteúdo gerado, assumindo total e exclusiva responsabilidade pela correção lógica do código, precisão dos relatórios de desempenho e integridade acadêmica do material entregue.
+
+A validação crítica identificou divergências perante a referência do professor, documentadas no relatório e em `resultados/validacao_referencia_professor.md`; esta nota não implica aprovação no critério externo de corretude. A bateria oficial foi executada no computador de Gabriel e suas medições foram preservadas.
 
 **Gabriel Oliveira Lucas César — 29/10/2026**  
 **Ronaldo Ribeiro Porto Filho — 29/10/2026**
